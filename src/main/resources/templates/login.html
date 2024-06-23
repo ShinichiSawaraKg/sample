@@ -2,32 +2,73 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 
 <head>
-	<meta charset="UTF-8">
-	<title>ログイン画面</title>
-	<link rel="stylesheet" th:href="@{/style.css}">
-	<script th:src="@{/js/script.js}"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<meta charset="UTF-8">
+<title>ログイン画面</title>
+<link rel="stylesheet" th:href="@{/style.css}">
+<script th:src="@{/js/script.js}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
 	<div th:replace="globalMenu :: globalMenu"></div>
-	<h1>Login Page</h1>
-	<form method="post" th:action="@{/login}">
-		<div>
-			<label for="username">Member Code:</label>
-			<input type="text" id="username" name="username">
+	<div id="formWrapper">
+
+		<div id="form">
+			<div>
+				<h1>ログイン</h1>
+			</div>
+			<div th:if="${param.error}">
+				<p style="color: red;">メンバーコードまたはパスワードが異なります</p>
+			</div>
+			<form th:action="@{/login}" method="post">
+				<div class="form-item">
+					<p class="formLabel">メンバーコード</p>
+					<input type="text" name="username" id="username" class="form-style"
+						autocomplete="off" />
+				</div>
+				<div class="form-item">
+					<p class="formLabel">パスワード</p>
+					<input type="password" name="password" id="password"
+						class="form-style" />
+					<p>
+						<a href="https://www.knowledgewing.com/kw/contact/"
+							target=”_blank”><small>パスワードを忘れた方はこちら</small></a>
+					</p>
+				</div>
+				<div class="form-item">
+					<p class="pull-left">
+						<a th:href="@{/goSearchItem}"><small>商品を検索する</small></a>
+					</p>
+					<button class="login pull-right">Log In</button>
+					<div class="clear-fix"></div>
+				</div>
+			</form>
 		</div>
-		<div>
-			<label for="password">Password:</label>
-			<input type="password" id="password" name="password">
-		</div>
-		<div>
-			<button type="submit">Login</button>
-		</div>
-		<div th:if="${param.error}">
-			<p style="color: red;">Invalid member code or password.</p>
-		</div>
-	</form>
+	</div>
 </body>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var formInputs = $('input[type="text"],input[type="password"]');
+						formInputs.focus(function() {
+							$(this).parent().children('p.formLabel').addClass(
+									'formTop');
+							$('div#formWrapper').addClass('darken-bg');
+							$('div.logo').addClass('logo-active');
+						});
+						formInputs.focusout(function() {
+							if ($.trim($(this).val()).length == 0) {
+								$(this).parent().children('p.formLabel')
+										.removeClass('formTop');
+							}
+							$('div#formWrapper').removeClass('darken-bg');
+							$('div.logo').removeClass('logo-active');
+						});
+						$('p.formLabel').click(function() {
+							$(this).parent().children('.form-style').focus();
+						});
+					});
+</script>
 
 </html>

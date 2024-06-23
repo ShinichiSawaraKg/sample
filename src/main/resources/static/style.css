@@ -251,7 +251,7 @@ div.form-item p.formLabel {
 	color: #8a8a8a !important;
 }
 
-input[type="submit"].login {
+button.login {
 	float: right;
 	width: 112px;
 	height: 37px;
@@ -268,13 +268,13 @@ input[type="submit"].login {
 	font-weight: bold;
 }
 
-input[type="submit"].login:hover {
+button.login:hover {
 	background-color: #fff;
 	border: 1px solid #55b1df;
 	color: #55b1df;
 	cursor: pointer;
 }
 
-input[type="submit"].login:focus {
+button.login:focus {
 	outline: none;
 }
