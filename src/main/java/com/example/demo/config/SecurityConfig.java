@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -18,14 +20,16 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/js/**", "/css/**", "/images/**", "/goSearchItem").permitAll()
-//                .requestMatchers("/test").authenticated()
+//                .requestMatchers("/customer/**").hasRole("CUSTOMER")
+//                .requestMatchers("/employee/**").hasRole("EMPLOYEE")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
+            	.loginProcessingUrl("/login")
                 .loginPage("/login")
-                .permitAll()
                 .defaultSuccessUrl("/goSearchItem", true)
                 .failureUrl("/login?error=true")
+                .permitAll()
             )
             .logout(logout -> logout
                 .logoutSuccessUrl("/goSearchItem")
