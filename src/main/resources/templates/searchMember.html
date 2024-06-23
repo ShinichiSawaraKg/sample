@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>メンバー検索画面</title>
+</head>
+
+<body>
+	<header>
+		<div>
+			<nav>
+				<ul>
+					<li><a th:href="@{/searchItem}">商品検索</a></li>
+					<!--
+			            <li th:if="${#request.remoteUser == null}"><a href="/login">Login</a></li>
+			            <li th:if="${#request.remoteUser != null}"><a href="/logout">Logout</a></li>
+			            <li th:if="${#authorization.expression('hasRole(''ROLE_CUSTOMER'')')}"><a href="/customer">Customer Page</a></li>
+			            <li th:if="${#authorization.expression('hasRole(''ROLE_EMPLOYEE'')')}"><a href="/employee">Employee Page</a></li>
+						-->
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div>
+		<h1>メンバー検索画面</h1>
+		<div>
+
+			<form th:object="${searchMemberForm}" th:action="@{/searchMember}" method="get">
+				<label>メンバーコード</label>
+
+				<input type="text" th:field="*{memberCode}" placeholder="メンバーコード">
+
+				<button type="submit">検索</button>
+			</form>
+			<div>
+				<p th:text="${member.memberCode}"></p>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

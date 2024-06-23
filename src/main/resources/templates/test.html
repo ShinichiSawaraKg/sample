@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>デザインテスト</title>
+	<link rel="stylesheet" th:href="@{/style.css}">
+	<!-- <script th:src="@{/js/script.js}"></script> なぜか読み込みができない -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<div th:replace="globalMenu :: globalMenu"></div>
+	<div id="formWrapper">
+
+		<div id="form">
+			<div>
+				<h1>ログイン</h1>
+			</div>
+			<div class="form-item">
+				<p class="formLabel">メンバーコード</p>
+				<input type="memberCode" name="memberCode" id="memberCode" class="form-style" autocomplete="off" />
+			</div>
+			<div class="form-item">
+				<p class="formLabel">パスワード</p>
+				<input type="password" name="password" id="password" class="form-style" />
+				<p><a href="https://www.knowledgewing.com/kw/contact/" target=”_blank”><small>パスワードを忘れた方はこちら</small></a>
+				</p>
+			</div>
+			<div class="form-item">
+				<p class="pull-left"><a th:href="@{/searchItem}"><small>商品を検索する</small></a></p>
+				<input type="submit" class="login pull-right" value="Log In">
+				<div class="clear-fix"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function () {
+		var formInputs = $('input[type="email"],input[type="password"]');
+		formInputs.focus(function () {
+			$(this).parent().children('p.formLabel').addClass('formTop');
+			$('div#formWrapper').addClass('darken-bg');
+			$('div.logo').addClass('logo-active');
+		});
+		formInputs.focusout(function () {
+			if ($.trim($(this).val()).length == 0) {
+				$(this).parent().children('p.formLabel').removeClass('formTop');
+			}
+			$('div#formWrapper').removeClass('darken-bg');
+			$('div.logo').removeClass('logo-active');
+		});
+		$('p.formLabel').click(function () {
+			$(this).parent().children('.form-style').focus();
+		});
+	});
+</script>
+
+</html>

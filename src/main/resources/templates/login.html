@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン画面</title>
+	<link rel="stylesheet" th:href="@{/style.css}">
+	<script th:src="@{/js/script.js}"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<div th:replace="globalMenu :: globalMenu"></div>
+	<h1>Login Page</h1>
+	<form method="post" th:action="@{/login}">
+		<div>
+			<label for="username">Member Code:</label>
+			<input type="text" id="username" name="username">
+		</div>
+		<div>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password">
+		</div>
+		<div>
+			<button type="submit">Login</button>
+		</div>
+		<div th:if="${param.error}">
+			<p style="color: red;">Invalid member code or password.</p>
+		</div>
+	</form>
+</body>
+
+</html>

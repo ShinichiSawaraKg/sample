@@ -1,0 +1,280 @@
+nav {
+	background-color: #a2e1eb;
+	height: 60px;
+}
+
+nav h1 {
+	float: left;
+	margin: 5px 0 0 30px;
+	font-size: 2em;
+	max-height: 10%;
+	max-width: 10%;
+}
+
+nav h1 img {
+	height: 50px;
+}
+
+nav ul {
+	float: right;
+}
+
+nav ul li {
+	display: inline-block;
+	list-style: none;
+	margin: 0 0 3px 0;
+	padding-right: 10px;
+	cursor: pointer;
+	color: #fff;
+	transition: all 0.5s ease;
+	position: relative;
+}
+
+nav ul li a {
+	display: inline-block;
+	list-style: none;
+	margin: 0 0 3px 0;
+	padding-right: 10px;
+	cursor: pointer;
+	color: #fff;
+	transition: all 0.5s ease;
+	position: relative;
+	text-decoration: none;
+}
+
+nav ul li a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+nav ul li:hover {
+	color: #000;
+}
+
+nav ul li:last-child {
+	margin-right: 20px;
+}
+
+nav ul li.active {
+	color: #000;
+}
+
+/*2階層目以降は横並びにしない*/
+nav ul ul {
+	display: block;
+	padding: 5%;
+	margin-top: 10px;
+	font-size: 90%;
+}
+
+nav ul ul li {
+	margin: 5px 0px 0px;
+	padding: 0%;
+}
+
+
+/*下の階層を持っているulの指定*/
+nav li.has-child ul {
+	/*絶対配置で位置を指定*/
+	position: absolute;
+	z-index: 4;
+	/*形状を指定*/
+	background: #28BFE7;
+	width: 122px;
+	/*はじめは非表示*/
+	visibility: hidden;
+	opacity: 0;
+	/*アニメーション設定*/
+	transition: all .3s;
+}
+
+/*hoverしたら表示*/
+nav li.has-child:hover>ul,
+nav li.has-child ul li:hover>ul,
+nav li.has-child:active>ul,
+nav li.has-child ul li:active>ul {
+	visibility: visible;
+	opacity: 1;
+}
+
+/*ナビゲーションaタグの形状*/
+nav li.has-child ul li a {
+	color: #fff;
+	border-bottom: solid 1px rgba(255, 255, 255, 0.6);
+}
+
+nav li.has-child ul li:last-child>a {
+	border-bottom: none;
+}
+
+nav li.has-child ul li a:hover,
+nav li.has-child ul li a:active {
+	background: #3577CA;
+}
+
+.underline {
+	position: absolute;
+	height: 4px;
+	background-color: #000;
+	transition: all 0.5s ease;
+}
+
+.btn--black,
+a.btn--black {
+	color: #fff;
+	background-color: #000;
+	font-size: 90%;
+	border-radius: 100px;
+}
+
+.btn--black:hover,
+a.btn--black:hover {
+	color: #000;
+	background: #fff;
+	border-radius: 100px;
+}
+
+/*以下、ログインページ設定*/
+
+body {
+	font-family: 'HelveticaNeue', 'Arial', sans-serif;
+}
+
+a {
+	color: #58bff6;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #aaa;
+}
+
+.pull-right {
+	float: right;
+}
+
+.pull-left {
+	float: left;
+}
+
+.clear-fix {
+	clear: both;
+}
+
+#formWrapper {
+	background: rgba(0, 0, 0, .2);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 68px;
+	left: 0;
+	transition: all .3s ease;
+}
+
+.darken-bg {
+	background: rgba(0, 0, 0, .5) !important;
+	transition: all .3s ease;
+}
+
+div#form {
+	position: absolute;
+	width: 360px;
+	height: 320px;
+	height: auto;
+	background-color: #fff;
+	margin: auto;
+	border-radius: 5px;
+	padding: 20px;
+	left: 50%;
+	top: 50%;
+	margin-left: -180px;
+	margin-top: -200px;
+}
+
+div #form h1{
+	text-align: center;
+}
+
+div.form-item {
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+}
+
+input {
+	transition: all .2s ease;
+}
+
+input.form-style {
+	color: #8a8a8a;
+	display: block;
+	width: 90%;
+	height: 44px;
+	padding: 5px 5%;
+	border: 1px solid #ccc;
+	-moz-border-radius: 27px;
+	-webkit-border-radius: 27px;
+	border-radius: 27px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #fff;
+	font-family: 'HelveticaNeue', 'Arial', sans-serif;
+	font-size: 105%;
+	letter-spacing: .8px;
+}
+
+div.form-item .form-style:focus {
+	outline: none;
+	border: 1px solid #58bff6;
+	color: #58bff6;
+}
+
+div.form-item p.formLabel {
+	position: absolute;
+	left: 26px;
+	top: 2px;
+	transition: all .4s ease;
+	color: #bbb;
+}
+
+.formTop {
+	top: -22px !important;
+	left: 26px;
+	background-color: #fff;
+	padding: 0 5px;
+	font-size: 14px;
+	color: #58bff6 !important;
+}
+
+.formStatus {
+	color: #8a8a8a !important;
+}
+
+input[type="submit"].login {
+	float: right;
+	width: 112px;
+	height: 37px;
+	-moz-border-radius: 19px;
+	-webkit-border-radius: 19px;
+	border-radius: 19px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #55b1df;
+	border: 1px solid #55b1df;
+	border: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+input[type="submit"].login:hover {
+	background-color: #fff;
+	border: 1px solid #55b1df;
+	color: #55b1df;
+	cursor: pointer;
+}
+
+input[type="submit"].login:focus {
+	outline: none;
+}
